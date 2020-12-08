@@ -132,4 +132,25 @@ class BundledItem
             'order'   => $this->order_price_visibility
         );
     }
+
+    public function is_purchasable()
+    {
+        if (! isset($this->purchasable)) {
+            $this->purchasable = $this->exists() && $this->product->is_purchasable();
+        }
+        return $this->purchasable;
+    }
+
+    public function is_priced_individually()
+    {
+        $is_priced_individually = 'yes' === $this->priced_individually;
+
+        /**
+         * 'woocommerce_bundled_item_is_priced_individually' filter.
+         *
+         * @param  boolean          $is_priced_individually
+         * @param  WC_Bundled_Item  $this
+         */
+        return apply_filters('woocommerce_bundled_item_is_priced_individually', $is_priced_individually, $this);
+    }
 }

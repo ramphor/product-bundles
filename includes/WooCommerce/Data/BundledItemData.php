@@ -129,7 +129,7 @@ class BundledItemData
 
     public function get_product_id()
     {
-        return is_object($this->data) ? $this->data->get_product_id() : null;
+        return absint($this->data[ 'product_id' ]);
     }
 
     public function update_meta($key, $value)

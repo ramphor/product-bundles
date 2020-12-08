@@ -1,6 +1,8 @@
 <?php
 namespace Ramphor\ProductBundles\WooCommerce\Modules\BundleSell;
 
+use Ramphor\ProductBundles\ProductBundleTemplate;
+
 class LayoutRenderer
 {
     protected static $render_hook;
@@ -41,11 +43,6 @@ class LayoutRenderer
         $bundle_sell_ids = Product::get_bundle_sell_ids($product);
 
         if (! empty($bundle_sell_ids)) {
-            /*
-             * This is not a Bundle-type product.
-             * But if it was, then we could re-use the PB templates... without writing new code.
-             * Let's "fake" it.
-             */
             $bundle = Product::get_bundle($bundle_sell_ids, $product);
 
             if (! $bundle->get_bundled_items()) {
@@ -62,19 +59,14 @@ class LayoutRenderer
                 wp_enqueue_script('wc-add-to-cart-bundle');
             }
 
-            wp_register_style('wc-pb-bs-single', WC_PB()->plugin_url() . '/includes/modules/bundle-sells/assets/css/single-product.css', false, WC_PB()->version, 'all');
-            wp_enqueue_style('wc-pb-bs-single');
-
             /*
              * Show Bundle-Sells section title.
              */
             $bundle_sells_title = Product::get_bundle_sells_title($product);
 
-            if ($bundle_sells_title) {
-                wc_get_template('single-product/bundle-sells-section-title.php', array(
-                    'title' => wpautop(do_shortcode(wp_kses($bundle_sells_title, ramphor_product_bundles_get_allowed_html('inline'))))
-                ), false, WC_PB()->plugin_path() . '/includes/modules/bundle-sells/templates/');
-            }
+            ProductBundleTemplate::render('bundle-sells-section-title', array(
+                'title' => &$bundle_sells_title,
+            ));
 
             /*
              * Show Bundle-Sells.
@@ -83,12 +75,8 @@ class LayoutRenderer
             <div class="bundle_form bundle_sells_form"><?php
 
             foreach ($bundle->get_bundled_items() as $bundled_item) {
-                // Neat, isn't it?
-                self::apply_bundled_item_template_overrides();
                 do_action('woocommerce_bundled_item_details', $bundled_item, $bundle);
-                self::reset_bundled_item_template_overrides();
             }
-
             ?>
                 <div class="bundle_data bundle_data_<?php echo $bundle->get_id(); ?>" data-bundle_price_data="<?php echo esc_attr(json_encode($bundle->get_bundle_price_data())); ?>" data-bundle_id="<?php echo $bundle->get_id(); ?>">
                     <div class="bundle_wrap">
