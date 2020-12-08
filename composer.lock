@@ -1,0 +1,126 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "3a4b0b317efd9e02f762314299e8adf4",
+    "packages": [
+        {
+            "name": "jankx/helpers",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jankx/helpers.git",
+                "reference": "6190ed549e58c5e3db437eeaa488a001792c20f3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jankx/helpers/zipball/6190ed549e58c5e3db437eeaa488a001792c20f3",
+                "reference": "6190ed549e58c5e3db437eeaa488a001792c20f3",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "./loader.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Puleeno Nguyen",
+                    "email": "puleeno@gmail.com"
+                }
+            ],
+            "description": "The helpers for Jankx Framework",
+            "time": "2020-11-23T15:49:00+00:00"
+        },
+        {
+            "name": "jankx/template",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jankx/template.git",
+                "reference": "197f51c8893c8340d1e9e20aaa44fe7d2f626c88"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jankx/template/zipball/197f51c8893c8340d1e9e20aaa44fe7d2f626c88",
+                "reference": "197f51c8893c8340d1e9e20aaa44fe7d2f626c88",
+                "shasum": ""
+            },
+            "require": {
+                "jankx/template-engine": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jankx\\Template\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Puleeno Nguyen",
+                    "email": "puleeno@gmail.com"
+                }
+            ],
+            "description": "Jankx Template is used to load the template support override, caching.",
+            "time": "2020-11-06T02:09:02+00:00"
+        },
+        {
+            "name": "jankx/template-engine",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jankx/template-engine.git",
+                "reference": "33ac45314098b554c8acdab4cb5d74aa1a752210"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jankx/template-engine/zipball/33ac45314098b554c8acdab4cb5d74aa1a752210",
+                "reference": "33ac45314098b554c8acdab4cb5d74aa1a752210",
+                "shasum": ""
+            },
+            "require": {
+                "jankx/helpers": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jankx\\Template\\Engine\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Puleeno Nguyen",
+                    "email": "puleeno@gmail.com"
+                }
+            ],
+            "description": "The template engine for Jankx Framework",
+            "time": "2020-09-30T08:43:06+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "jankx/template": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
+}

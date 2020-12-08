@@ -10,7 +10,9 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "jankx/template": "dev-master"
+    },
     "autoload": {
         "psr-4": {
             "Ramphor\\ProductBundles\\": "includes/"
