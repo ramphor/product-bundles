@@ -25,8 +25,7 @@ class BundleSell
                 <label for="crosssell_ids"><?php _e('Bundle-sells', 'woocommerce-product-bundles'); ?></label>
                 <select class="wc-product-search" multiple="multiple" style="width: 50%;" id="bundle_sell_ids" name="bundle_sell_ids[]" data-placeholder="<?php esc_attr_e('Search for a product&hellip;', 'woocommerce'); ?>" data-action="woocommerce_json_search_bundle_sells" data-exclude="<?php echo intval($product_object->get_id()); ?>" data-limit="100" data-sortable="true">
                     <?php
-
-                        $product_ids = Product::get_bundle_sell_ids($product_object, 'edit');
+                    $product_ids = Product::get_bundle_sell_ids($product_object, 'edit');
 
                     if (! empty($product_ids)) {
                         foreach ($product_ids as $product_id) {
@@ -112,7 +111,7 @@ class BundleSell
          * Process bundle-sells title.
          */
 
-        $title = ! empty($_POST[ 'wc_pb_bundle_sells_title' ]) ? wp_kses(wp_unslash($_POST[ 'wc_pb_bundle_sells_title' ]), WC_PB_Helpers::get_allowed_html('inline')) : false; // @phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+        $title = ! empty($_POST[ 'wc_pb_bundle_sells_title' ]) ? wp_kses(wp_unslash($_POST[ 'wc_pb_bundle_sells_title' ]), ramphor_product_bundles_get_allowed_html('inline')) : false; // @phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
         if ($title) {
             $product->update_meta_data('_wc_pb_bundle_sells_title', $title);

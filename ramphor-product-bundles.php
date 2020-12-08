@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define('RAMPHOR_PRODUCT_BUNDLES_PLUGIN_FILE', __FILE__);
+define( 'RAMPHOR_PRODUCT_BUNDLES_PLUGIN_FILE', __FILE__ );
 
 $composer_autoload = sprintf( '%s/vendor/autoload.php', dirname( __FILE__ ) );
 if ( file_exists( $composer_autoload ) ) {
