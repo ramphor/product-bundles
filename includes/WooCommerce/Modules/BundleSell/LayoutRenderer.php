@@ -67,29 +67,8 @@ class LayoutRenderer
             ProductBundleTemplate::render('bundle-sells-section-title', array(
                 'title' => &$bundle_sells_title,
             ));
-
-            /*
-             * Show Bundle-Sells.
-             */
-            ?>
-            <div class="bundle_form bundle_sells_form"><?php
-
             foreach ($bundle->get_bundled_items() as $bundled_item) {
-                do_action('woocommerce_bundled_item_details', $bundled_item, $bundle);
             }
-            ?>
-                <div class="bundle_data bundle_data_<?php echo $bundle->get_id(); ?>" data-bundle_price_data="<?php echo esc_attr(json_encode($bundle->get_bundle_price_data())); ?>" data-bundle_id="<?php echo $bundle->get_id(); ?>">
-                    <div class="bundle_wrap">
-                        <div class="bundle_error" style="display:none">
-                            <div class="woocommerce-info">
-                                <ul class="msg"></ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <?php
-
             do_action('woocommerce_after_bundled_items', $bundle);
         }
     }
