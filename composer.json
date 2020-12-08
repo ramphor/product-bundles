@@ -1,0 +1,19 @@
+{
+    "name": "ramphor/product-bundles",
+    "type": "project",
+    "license": "MIT",
+    "description": "",
+    "authors": [
+        {
+            "name": "Puleeno Nguyen",
+            "email": "puleeno@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Ramphor\\ProductBundles\\": "includes/"
+        }
+    }
+}
