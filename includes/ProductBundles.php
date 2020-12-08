@@ -110,7 +110,7 @@ class ProductBundles
         }
 
         // Auto call init method when it is defined
-        $init_callable = array($module, 'includes');
+        $init_callable = array($module, 'init');
         if (is_callable($init_callable)) {
             add_action('init', $init_callable);
         }
