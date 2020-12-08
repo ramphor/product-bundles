@@ -37,6 +37,11 @@ class ProductBundles
 
         // Require helpers
         require_once RPPB_ABSPATH . '/functions.php';
+
+        if ($this->is_request('frontend')) {
+            require_once RPPB_ABSPATH . '/template-functions.php';
+            require_once RPPB_ABSPATH . '/template-hooks.php';
+        }
     }
 
     protected function initHooks()
@@ -114,5 +119,13 @@ class ProductBundles
         if (is_callable($init_callable)) {
             add_action('init', $init_callable);
         }
+    }
+
+    protected function is_request($request) {
+        switch($request) {
+            case 'frontend':
+                return !is_admin() && !defined('DOING_AJAX') && !defined('DOING_CRON');
+        }
+        return false;
     }
 }

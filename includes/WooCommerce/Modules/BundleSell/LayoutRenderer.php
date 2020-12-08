@@ -6,16 +6,28 @@ use Ramphor\ProductBundles\ProductBundleTemplate;
 class LayoutRenderer
 {
     protected static $render_hook;
+    protected static $render_priority = 10;
 
     public function set_render_hook($hook_name)
     {
-        static::$render_hook = $hook_name;
+        if (is_string($hook_name)) {
+            static::$render_hook = $hook_name;
+        } elseif(is_array($hook_name)) {
+            if (isset($hook_name['hook'])) {
+                static::$render_hook = $hook_name['hook'];
+            }
+            if (isset($hook_name['priority'])) {
+                static::$render_priority = $hook_name['priority'];
+            }
+        } else {
+            static::$hook_name = 'woocommerce_before_add_to_cart_form';
+        }
     }
 
     public function hook_to_template()
     {
         if (static::$render_hook) {
-            add_action(static::$render_hook, array( $this, 'render' ));
+            add_action(static::$render_hook, array( $this, 'render' ), static::$render_priority);
         }
     }
 
@@ -67,8 +79,11 @@ class LayoutRenderer
             ProductBundleTemplate::render('bundle-sells-section-title', array(
                 'title' => &$bundle_sells_title,
             ));
+
             foreach ($bundle->get_bundled_items() as $bundled_item) {
+                do_action( 'woocommerce_bundled_item_details', $bundled_item, $bundle );
             }
+
             do_action('woocommerce_after_bundled_items', $bundle);
         }
     }
