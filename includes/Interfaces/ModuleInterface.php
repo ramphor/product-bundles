@@ -1,5 +1,5 @@
 <?php
-namespace Ramphor\BundleSell\Intefaces;
+namespace Ramphor\ProductBundles\Interfaces;
 
 interface ModuleInterface
 {
