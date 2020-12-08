@@ -29,12 +29,13 @@ function ramphor_product_bundles_get_allowed_html( $case ) {
 			break;
 	}
 
-		return $allowed_html;
+	return $allowed_html;
 }
 
 
 function ramphor_product_bundles_template() {
 	$args = func_get_args();
+
 	return call_user_func_array(
 		array( ProductBundleTemplate::getLoader(), 'render' ),
 		$args
