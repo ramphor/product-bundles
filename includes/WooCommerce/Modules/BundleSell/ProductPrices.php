@@ -1,5 +1,5 @@
 <?php
-namespace Ramphor\ProductBundles\Modules\BundleSell;
+namespace Ramphor\ProductBundles\WooCommerce\Modules\BundleSell;
 
 // Exit if accessed directly.
 if (! defined('ABSPATH')) {

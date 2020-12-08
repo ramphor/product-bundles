@@ -1,7 +1,7 @@
 <?php
 namespace Ramphor\ProductBundles;
 
-use Ramphor\ProductBundles\Modules\BundleSell\WooCommerce as WooCommerceBundleSell;
+use Ramphor\ProductBundles\WooCommerce\Modules\BundleSell as WooCommerceBundleSell;
 
 class ModuleManager
 {

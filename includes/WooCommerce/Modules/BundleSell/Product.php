@@ -1,8 +1,9 @@
 <?php
-namespace Ramphor\ProductBundles\Modules\BundleSell;
+namespace Ramphor\ProductBundles\WooCommerce\Modules\BundleSell;
 
 use WC_Product;
 use Ramphor\ProductBundles\BundleCache;
+use Ramphor\ProductBundles\WooCommerce\WC_ProductBundle;
 
 // Exit if accessed directly.
 if (! defined('ABSPATH')) {
@@ -76,5 +77,44 @@ class Product
         }
 
         return $discount;
+    }
+
+    public static function get_bundle_sell_data_item_args($bundle_sell_id, $product)
+    {
+
+        $discount = self::get_bundle_sells_discount($product);
+
+        return apply_filters('wc_pb_bundle_sell_data_item_args', array(
+            'bundle_id'  => $product->get_id(),
+            'product_id' => $bundle_sell_id,
+            'meta_data'  => array(
+                'quantity_min'         => 1,
+                'quantity_max'         => 1,
+                'priced_individually'  => 'yes',
+                'shipped_individually' => 'yes',
+                'optional'             => 'yes',
+                'discount'             => $discount ? $discount : null,
+                'stock_status'         => null,
+                'disable_addons'       => 'yes'
+            )
+        ), $bundle_sell_id, $product);
+    }
+
+    public static function get_bundle($bundle_sell_ids, $product)
+    {
+
+        $bundle_sell_ids    = array_map('intval', $bundle_sell_ids);
+        $bundle             = new WC_ProductBundle($product);
+        $bundled_data_items = array();
+
+        foreach ($bundle_sell_ids as $bundle_sell_id) {
+            $args = self::get_bundle_sell_data_item_args($bundle_sell_id, $product);
+
+            $bundled_data_items[] = $args;
+        }
+
+        $bundle->set_bundled_data_items($bundled_data_items);
+
+        return apply_filters('wc_pb_bundle_sells_dummy_bundle', $bundle);
     }
 }

@@ -1,8 +1,8 @@
 <?php
-namespace Ramphor\ProductBundles\Modules\BundleSell\Admin\WooCommerce;
+namespace Ramphor\ProductBundles\WooCommerce\Modules\BundleSell\Admin;
 
 use WC_AJAX;
-use Ramphor\ProductBundles\Modules\BundleSell\Product;
+use Ramphor\ProductBundles\WooCommerce\Modules\BundleSell\Product as BundleSellProduct;
 
 class BundleSell
 {
@@ -25,7 +25,7 @@ class BundleSell
                 <label for="crosssell_ids"><?php _e('Bundle-sells', 'woocommerce-product-bundles'); ?></label>
                 <select class="wc-product-search" multiple="multiple" style="width: 50%;" id="bundle_sell_ids" name="bundle_sell_ids[]" data-placeholder="<?php esc_attr_e('Search for a product&hellip;', 'woocommerce'); ?>" data-action="woocommerce_json_search_bundle_sells" data-exclude="<?php echo intval($product_object->get_id()); ?>" data-limit="100" data-sortable="true">
                     <?php
-                    $product_ids = Product::get_bundle_sell_ids($product_object, 'edit');
+                    $product_ids = BundleSellProduct::get_bundle_sell_ids($product_object, 'edit');
 
                     if (! empty($product_ids)) {
                         foreach ($product_ids as $product_id) {
@@ -43,7 +43,7 @@ class BundleSell
 
                 woocommerce_wp_textarea_input(array(
                     'id'            => 'wc_pb_bundle_sells_title',
-                    'value'         => Product::get_bundle_sells_title($product_object, 'edit'),
+                    'value'         => BundleSellProduct::get_bundle_sells_title($product_object, 'edit'),
                     'label'         => __('Bundle-sells title', 'woocommerce-product-bundles'),
                     'description'   => __('Text to display above the bundle-sells section.', 'woocommerce-product-bundles'),
                     'placeholder'   => __('e.g. "Frequently Bought Together"', 'woocommerce-product-bundles'),
@@ -52,7 +52,7 @@ class BundleSell
 
                 woocommerce_wp_text_input(array(
                     'id'            => 'wc_pb_bundle_sells_discount',
-                    'value'         => Product::get_bundle_sells_discount($product_object, 'edit'),
+                    'value'         => BundleSellProduct::get_bundle_sells_discount($product_object, 'edit'),
                     'type'          => 'text',
                     'class'         => 'input-text wc_input_decimal',
                     'label'         => __('Bundle-sells discount', 'woocommerce-product-bundles'),
